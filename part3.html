@@ -1,0 +1,59 @@
+---
+layout: page
+title : Docking of a small library
+group: navigation
+---
+
+<h3>Step 8 - Standard docking</h3>
+After creating a receptor and a set of ligands to dock to that receptor, we have to set up the actual docking run. Docking algorithms usually allow to set a large number of parameters that will steer the docking process. Here, we're going to start with a very simple docking example to explain the basics of docking. Docking in MOE is controlled via
+<li><b>[MOE]</b> → <i>Compute</i> → <i>Dock...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/dock1.png" title="Simple docking parameters with MOE"/></a></td>
+</tr>
+</table>
+Ligand: <b><font color="5578da">set1_washed.mdb</font></b>
+<br>
+Output: <b><font color="da7555">set1_docked.mdb</font></b>
+<br>
+<li><b>...</b> → <i>Run</i></li>
+<br>
+The docking will again result in a database which is MOE's way of handling a number of molecules. This database will contain the docked poses of the molecules, the \textit{mseq} and a number of scores from the docking run. The <i>mseq</i> tells you to which molecule in the original database the respective pose belongs. This is necessary in case you saved multiple poses per ligand.<br>
+The docking poses can be browsed in [MOE] conveniently using the database browser.
+<li><b>[DBV]</b> → <i>File</i> → <i>Browse...</i></li>
+<br>The interactions of the molecule with the receptor can be visualized in 2D via
+<li><b>[MOE]</b><i> [RHS]</i> → <i>Ligand</i> → <i>Ligand interactions...</i> → <i>select "Browser Atoms"</i> → <i>Apply</i></li>
+<br>
+<h3>Step 9 - Rescoring</h3>
+The scoring functions used in a docking process are designed to be quite fast. The docking tool can be used to rescore the function using a more sophisticated scoring function. At the same time we'll limit our database to one pose per ligand.
+<li><b>[MOE]</b> → <i>Compute</i> → <i>Dock...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/rescore1.png" title="Rescoring"/></a></td>
+</tr>
+</table>
+Ligand: <b><font color="5578da">set1_docked.mdb</font></b>
+<br>
+Output: <b><font color="da7555">set1_rescored.mdb</font></b>
+<br>
+<li><b>...</b> → <i>Run</i></li>
+<br>
+<h3>Step 10 - Refinement</h3>
+In a second docking run, we will try to address some problem arrising with the aforementioned docking. This second docking will use caffeine reference for the binding pocket and we'll will use the forcefield implementations in MOE to improve docked poses (Refinement) and use a even more sophisticated scoring function than before (Rescoring).
+<li><b>[MOE]</b> → <i>Compute</i> → <i>Dock...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/refine1.png" title="Rescoring"/></a></td>
+</tr>
+</table>
+Ligand: <b><font color="5578da">set1.mdb</font></b>
+<br>
+Output: <b><font color="da7555">set1_refined.mdb</font></b>
+<br>
+<li><b>...</b> → <i>Run</i></li>
+<br>
+<a href="/part4.html">Let's jump to <b>Part 4</b></a>
+<br><br>

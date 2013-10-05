@@ -1,0 +1,75 @@
+---
+layout: page
+title: Large-scale virtual screening
+group: navigation
+---
+The set2 was extracted from the <a href="http://cavasotto-lab.net/Databases/GDD/Download/" target='_blank'>GLL / GDD</a> library, which contains 11 199 compounds related to the AA<sub>1</sub>R. Among them 280 compounds are actives, while the 10 919 remaining are decoys.
+In the examples shown untill now, we docked 50 molecules to our receptor, which is a small number.
+docking triangle no refine.
+<br><br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> Add ROC/AUC concept briefly.</p>
+
+<h3>Step 11 - Analyzing the set2_dock1</h3>
+<li><b>[MOE]</b> → <i>File</i> → <i>Open</i> → <i>Open</i> → <i><b><font color="5578da">set2_dock1.mdb</font></b></i> → <i>OK</i></li>
+<br>
+This database contains the 11 199 docked compounds without the activity. In order to retrieve this field and therefor compute the enrichment we need to merge this database with another one containing the activity field for those compounds.
+<br><br>
+<h4>A - Merging</h4>
+<li><b>[DBV]</b> → <i>Merge...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/merge1.png" title="Merging 1"/></a></td>
+</tr>
+</table>
+Input Database 1: <b><font color="5578da">set2_dock1.mdb</font></b>
+<br>
+Input Database 2: <b><font color="5578da">set2_activity.mdb</font></b>
+<br><br>
+<li>... → <i>Next &gt;&gt;</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/merge2.png" title="Merging 1"/></a></td>
+</tr>
+</table>
+<li>... → <i>Next &gt;&gt;</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/merge3.png" title="Merging 1"/></a></td>
+</tr>
+</table>
+<li>... → <i>Merge</i></li>
+<br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> Now you can see a new column "Activity" in the database.</p>
+<h4>B - Sorting</h4>
+Now let's sort the database according the Score.
+<li><b>[DBV]</b> → <i>right-click on "S"</i> → <i>Sort</i> → <i>Ascending</i> → <i>Yes</i></li>
+We will now save the Activity field in a separated file, so we can compute the enrichment of this run.
+<li><b>[DBV]</b> → <i>left-click on "Activity"</i></li>
+<li><b>[DBV]</b> → <i>File</i> → <i>Save as...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/rank1.png" title="Ranking"/></a></td>
+</tr>
+</table>
+Output: <b><font color="da7555">set2_dock1_ranked.list</font></b>
+<br><br>
+<li>... → <i>Ok</i></li>
+<br>
+<h4>C - Computing enrichment</h4>
+Now visit <a href="http://137.248.161.65:100/" target='_blank'>our tool</a> in order to compute enrichment.
+<li>Choose file → <b><font color="da7555">set2_dock1_ranked.list</font></b> → <i>Submit</i></li>
+<br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> The value of the enrichment can be found in front of "Calculated AUC is". You can also download a .pdf that contains the enrichment curve.</p>
+
+<h3>Step 12 - Analyzing the set2_dock2</h3>
+Repeat the same procedure with <b><font color="5578da">set2_dock1.mdb</font></b>.
+<li>Merge the Activity field from <b><font color="5578da">set2_activity.mdb</font></b> into <b><font color="5578da">set2_dock1.mdb</font></b>.</li>
+<li>Once sorted, export the Activity field into a new file <b><font color="da7555">set2_dock1_ranked.list</font></b>.</li>
+<li>Compute the enrichment</li>
+<br>
+<a href="/part5.html">Let's jump to <b>the last Part</b></a>
+<br><br>

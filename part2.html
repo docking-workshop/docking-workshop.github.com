@@ -1,0 +1,83 @@
+---
+layout: page
+title: Docking preparation
+group: navigation
+---
+
+<h3>Step 4 - Receptor preparation</h3>
+<li><b>[MOE] →</b><i> Compute</i> → <i>Prepare</i> → <i>Structure preparation...</i></li>
+The appearing window will show you warnings and possible solutions to correct the receptor and prepare it for docking.
+The numeruous warning concerning zero occupancy can be ignored; since our structure is a model, no occupancy data are available.
+The number of hydrogens is incorrect, since there are no hydrogens at all. We'll use MOE's <i>Protonate3D</i> tool to add hydrogens and optimize them.
+<li>... → <i>Protonate 3D</i> → <i>select receptors atoms</i> → Ok</li>
+<br>
+<table>
+<tr>
+<td><img src="/img/recPrep1.png" title="Minimize"/></a></td>
+</tr>
+</table>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> Please note, that MOE would flip ASN254 if we would have selected all atoms. This is due to the orientation of caffeine within the binding pocket.</p>
+
+Now, MOE can solve the remaining problems on its own:
+<li>... → <i>Correct</i> → <i>Close</i></li>
+<br>
+<h3>Step 5 - Minimizing caffeine</h3>
+Since we learned, that the caffeine does not fit the orientation, we should optimize its orientation by an energy minimization. To guide this procedure, we add an artificial restrain prior to minimization:
+<li><b>[MOE] →</b><i> Edit</i> → <i>Potential</i> → <i>Restrain...</i> → <i>select N of ASN254 the closest keto oxygen of caffeine</i> → <i>set 2.5 &lt; target value &lt; 3.5</i> → <i>Create</i></li>
+Then close the restrain tools with the red cross.
+
+<li><b>[MOE]</b> → <i>Compute</i> → <i>Energy minimize...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/mimin1.png" title="Minimize"/></a></td>
+</tr>
+</table>
+<li>... → <i>OK</i></li>
+<br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> Check for warnings here. In the charges field, be sure that the system appears reasonable.</p>
+
+<h3>Step 6 - Binding site definition</h3>
+The orientation of caffeine is now optimized within the binding site without modifying the binding site. We could use caffeine as reference to define the binding site for the docking process, but this is not always possible that easily. For that reason, we'll use MOE site finder tool which scans the receptor surface for depressions.
+<li><b>[MOE]</b> → <i>Compute</i> → <i>Site Finder...</i> → <i>Apply</i></li>
+The algorithm will return a list of found pockets within the receptor together with some additional information like the size and the residues forming the pocket. Usually, the largest pocket is the one of interest. To save the desired pocket create dummy atoms:
+<li>... → <i>Dummies...</i> → <i>Yes</i> → <i>Close</i></li>
+The receptor is now ready for docking.
+<br><br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> By selecting a pocket, MOE will depict this pocket by alpha centers (grey: apolar, red: polar) in the main window.</p>
+<br>
+
+<h3>Step 7 - Ligand preparation</h3>
+We're now going to create a database of ligands that will be docked into the binding site.
+<li><b>[MOE] →</b><i> File</i> → <i>New</i> → <i>Database...</i> → <i><font color="da7555"><b>set1.mdb</b></font></i> → <i>OK</i></li>
+<br><p style = "background-color:#BADA55"><i><b>n.b.</b></i> An empty database will open in the database viewer, Note how the [DBV] button became accessible from within [MOE].</p>
+We're now going to load two files containing adenosine A<sub>1</sub> ligands and decoys.
+<li><b>[DBV] →</b><i> File</i> → <i>Import</i> → <i>Add...</i> → <i><font color="#5578da"><b>10_aa1r_lig.sdf</b></font></i> → <i>Add...</i> → <i><font color="#5578da"><b>40_aa1r_dec.sdf</b></font></i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/ligandPrep1.png" title="Minimize"/></a></td>
+</tr>
+</table>
+<li>... → <i>OK</i></li>
+<br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> 
+The database now contains three columns, the first one is the <i>mol</i> field containing the molecular data as well as the name of all the molecules. The second column <i>Name</i> also stores the name of the molecule and the <i>Activity</i> field tells you whether the corresponding molecule is an active (1) or a decoy (0).</p>
+
+<li><b>[DBV]</b><i> Compute</i> → <i>Molecule</i> → <i>Wash...</i> → <i><font color="#da7555"><b>set1_washed.mdb</b></font></i> → <i>OK</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/wash1.png" title="Minimize"/></a></td>
+</tr>
+</table>
+<li>... → <i>OK</i></li>
+<br>
+This will call MOE's utility to do the ligand preparation. Washing molecules can fix the charges, the protonations, tautomers can be enumerated and salts can be stripped. The modified structure will be stored in a new database: <font color="#da7555"><b>set1_washed.mdb</font></b>.
+A new database viewer will open containing the washed molecules and the same additional data as mentioned before.
+The ligands are now combined in a database and ready for docking. 
+<br><br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> You can close the database without saving since MOE will write all changes within a database directly to the file.</p>
+
+<a href="/part3.html">Let's jump to <b>Part 3</b></a>
+<br/><br/>

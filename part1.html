@@ -1,0 +1,69 @@
+---
+layout: page
+title: Overview of MOE's basics
+group: navigation
+---
+In this section, the basic controls in MOE are explained. Subsequently, you will load a provided receptor structure, which was modeled in a <a href="http://www.plosone.org/article/fetchObject.action?uri=info%3Adoi%2F10.1371%2Fjournal.pone.0049910&representation=PDF" target='_blank'>virtual screening approach</a>. Since this receptor comes without a ligand, you will learn how to identify the binding site in order to guide the docking process.
+<br><br>
+<h3>Step 1 - Opening the receptor file</h3>
+<li><b>[MOE]</b><i> → File</i> → <i>Open</i> → <i><font color="#5578da"><b>aa1r_v1.pdb</b></font></i> → <i>OK</i></li>
+<br>
+
+<h3>Step 2 - Basic MOE controls</h3>
+During this example you'll work with three main windows of MOE, namely the main window itself, termed <b>[MOE]</b>, the database viewer <b>[DBV]</b> and the sequence editor <b>[SEQ]</b>. Two important components of the MOE window are the "Right Hand Side" button bar <i>[RHS]</i> and the footer <i>[Footer]</i>, where you find a lot of helpful shortcuts.
+
+<br><br>
+<li><b>[MOE]</b><i> → System</i></li>
+In this windows, all objects loaded into MOE are shown
+<li><b>[MOE]</b><i> → Help</i> → <i>Mouse</i></li>
+This will print the current mouse settings.
+<li><b>[MOE]</b><i> → Help</i> → <i>Contents...</i></li>
+More examples are available within Help.
+<br><br>
+Now try to become familiar with the MOE environment. For example:
+<li><b>[MOE]</b><i> [Footer]</i> → <i>Atoms/Ribbon</i></li>
+Those options allows you to change the appearence of atoms.
+<li><b>[MOE]</b><i> [RHS]</i> → <i>Hide/Show</i></li>
+This option allows to show or hide atoms/residues of the system.
+<li>Rotate/translate the view, set center of rotation</li>
+<br>
+
+<h3>Step 3 - Modelling caffeine to the binding site</h3>
+We will load a crystal structure of the Adenosine A<sub>2</sub>A receptor bound to caffeine. Since these two structures have a similar binding site, we expect caffeine to bind in a similar manner to both of them. To get a (very rough) idea of this binding mode, we're going to superpose the two proteins and copy the position of caffeine from the A<sub>2</sub>A receptor structure to our model. Now, open the sequence editor.
+<li><b>[MOE]</b><i> → [SEQ]</i></li>
+Load the adenosine A<sub>2</sub>A structure. The sequence will appear in the [SEQ] window and the structure in the [MOE] window. Loading this structure via [MOE] would have worked, too.
+<li><b>[SEQ]</b><i> → File</i> → <i>Open</i> → <i><font color="#5578da"><b>3RFM.pdb</b></font></i> → <i>OK</i></li>
+Now superpose the two structures. This structural superposition requires MOE to calculate a sequence alignment first.
+<li><b>[SEQ]</b><i> Alignement</i> → <i>Superpose...</i></li>
+<br>
+<table>
+<tr>
+<td><img src="/img/superpose1.png" title="Superpose receptors with MOE"/></a></td>
+</tr>
+</table>
+<li><b>...</b> → <i>Superpose</i> → <i>Yes</i> → <i>Close</i></li>
+<br>
+Investigate the aligned structures and their binding sites carefully. We can easily see, that caffeine interacts with the asparagin as mentioned. 
+<br>
+Now, delete the protein part from the crystal structure, maintaining the small molecule.
+<br>
+<li><b>[SEQ]</b> → <i>right-click 3RFM.pdb protein chain</i> → <i>Delete</i> → <i>OK</i></li>
+MOE still considers the ligand and the receptor to be independent objects. You can check that in the system:
+<li><b>[MOE]</b><i> → System</i></li>
+<br>
+Rename the tag and the chain to make MOE considering caffeine to be part of the model.
+<li><b>[SEQ]</b> → <i>right-click CFF chain</i> → <i>Rename</i> → <i>"caffeine"</i></li>
+<li><b>[SEQ]</b> → <i>right-click caffeine <b>tag</b></i> → <i>Rename</i> → <i>"aa1r_v1.pdb"</i></li>
+<br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> Caffeine has now become part of our model, you can check again the system.</p>
+
+Now, MOE allows us to use some convenient shortcuts, that were not possible before.
+<li><b>[MOE]</b><i> [RHS]</i> → <i>Show</i> → <i>Pocket</i></li>
+<li><b>[MOE]</b><i> [RHS]</i> → <i>Select</i> → <i>Ligand</i></li>
+<li><b>[MOE]</b><i> [footer]</i> → <i>Atoms</i> → <i>select your favorite depiction</i></li>
+<br>
+<p style = "background-color:#BADA55"><i><b>n.b.</b></i> Changing the way things look is possible via the system tool too.</p>
+
+<a href="/part2.html">Let's jump to <b>Part 2</b></a>
+<br/>
+<br/>
